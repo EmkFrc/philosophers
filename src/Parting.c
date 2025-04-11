@@ -6,7 +6,7 @@
 /*   By: efranco <efranco@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/25 23:57:44 by efranco           #+#    #+#             */
-/*   Updated: 2025/03/26 01:21:11 by efranco          ###   ########.fr       */
+/*   Updated: 2025/04/07 16:48:28 by efranco          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -59,7 +59,7 @@ void	check_line(int count, char **line)
 	}
 	check_each_arguments(count, line);
 }
-void	init_philo(t_philo	*philo, char **line)
+void	init_data(t_data *philo, char **line)
 {
 	philo->number_of_philosophers = ft_atoi(line[1]);
 	philo->time_to_die = ft_atoi(line[2]);
@@ -67,4 +67,5 @@ void	init_philo(t_philo	*philo, char **line)
 	philo->time_to_sleep = ft_atoi(line[4]);
 	if(line[5])
 		philo->number_of_times_must_eat = ft_atoi(line[5]);
+	pthread_mutex_init(&philo->mutex, NULL);
 }
