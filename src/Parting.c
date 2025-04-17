@@ -6,7 +6,7 @@
 /*   By: efranco <efranco@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/25 23:57:44 by efranco           #+#    #+#             */
-/*   Updated: 2025/04/11 23:55:14 by efranco          ###   ########.fr       */
+/*   Updated: 2025/04/17 15:06:00 by efranco          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -67,7 +67,9 @@ void	init_data(t_data *philo, char **line)
 	philo->time_to_sleep = ft_atoi(line[4]);
 	if(line[5])
 		philo->number_of_times_must_eat = ft_atoi(line[5]);
-	pthread_mutex_init(&philo->mutex, NULL);
 	philo->stop = 0;
-	pthread_mutex_init(&philo->stop_mutex, NULL);
+	philo->time_to_start = 0;
+	pthread_mutex_init(&philo->mutex, NULL);
+	pthread_mutex_init(&philo->mutex_stop, NULL);
+	pthread_mutex_init(&philo->mutex_all_ate, NULL);
 }

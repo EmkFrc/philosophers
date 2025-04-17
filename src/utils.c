@@ -6,9 +6,26 @@
 /*   By: efranco <efranco@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/26 00:27:34 by efranco           #+#    #+#             */
-/*   Updated: 2025/03/26 00:28:04 by efranco          ###   ########.fr       */
+/*   Updated: 2025/04/16 18:14:13 by efranco          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
+
+#include "philo.h"
+
+long	get_timestamp_us(void)
+{
+	struct timeval	tv;
+
+	gettimeofday(&tv, NULL);
+	return (tv.tv_sec * 1000000 + tv.tv_usec);
+}
+void	printf_log(t_philo *philo, char *str)
+{
+	pthread_mutex_lock(&philo->mutex_print);
+		printf("%ld %d  %s\n", (get_timestamp_us()
+				- philo->link->time_to_start) / 1000, philo->id, str);
+		pthread_mutex_unlock(&philo->mutex_print);
+}
 
 int ft_atoi(const char *theString)
 {

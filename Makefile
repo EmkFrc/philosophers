@@ -1,32 +1,32 @@
-FCT = src/main.c\
+
+# Nom de l'exécutable
+NAME = philo
+
+# Compilateur et options
+CC = cc
+HEADER = Includes/
+CFLAGS = -Wall -Wextra -Werror -I ${HEADER}
+
+# Fichiers sources et objets
+SRCS =	src/main.c\
 		src/Parting.c\
 		src/utils.c
-OBJ = ${FCT:.c=.o}
+OBJS = $(SRCS:.c=.o)
+# Commandes
+all: $(NAME)
 
-ALL = ${FCT}
+$(NAME): $(OBJS)
+	$(CC) $(CFLAGS) -o $(NAME) $(OBJS)
 
-OBJB = ${ALL:.c=.o}
+%.o: %.c
+	$(CC) $(CFLAGS) -c $< -o $@
 
-CC = cc
+clean:
+	rm -f $(OBJS)
 
-CFLAG = -Wall -Wextra -Werror -IIncludes
+fclean: clean
+	rm -f $(NAME)
 
-NAME = philo.a
+re: fclean all
 
-all : ${NAME}
-
-${NAME} : ${OBJ}
-	ar rcs $@ $^
-
-%.o : %.c
-	${CC} ${CFLAG} $^ -c -o $@
-
-clean :
-	rm -rf ${OBJB}
-
-fclean : clean
-	rm -rf ${NAME}
-
-re : fclean all
-
-.PHONY : fclean clean all re
+.PHONY: all clean fclean re
